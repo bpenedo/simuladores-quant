@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- Autor: Bruno Teixeira Penedo (c) 2026 - bpenedo@gmail.com - TODOS OS DIREITOS RESERVADOS -->
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simuladores de Opções</title>
+    <base href="/simuladores-quant/" />
+    <link rel="stylesheet" href="estilo.css" />
+</head>
+<body>
+    <div id="aplicacao">
+        <div class="carregando">Carregando o WebAssembly…</div>
+    </div>
+    <div id="blazor-error-ui">
+        Ocorreu um erro não tratado.
+        <a href="" class="reload">Recarregar</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script>
+        // A escala de fonte precisa ir para o ELEMENTO RAIZ.
+        //
+        // A folha de estilo dimensiona 85 regras em `rem`, e `rem` se refere
+        // sempre ao <html> -- nunca ao contêiner da aplicação. Aplicar o
+        // tamanho em `.aplicacao`, como se fazia antes, movia apenas o texto
+        // que herda diretamente, e deixava títulos, botões e espaçamentos
+        // parados. Daí esta única linha de interoperabilidade.
+        window.definirTamanhoDeFonte = function (px) {
+            document.documentElement.style.fontSize = px + "px";
+        };
+    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+</html>

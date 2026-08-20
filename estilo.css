@@ -1,0 +1,1069 @@
+/* Autor: Bruno Teixeira Penedo (c) 2026 - bpenedo@gmail.com - TODOS OS DIREITOS RESERVADOS */
+
+:root {
+    --fundo: #f6f6f7;
+    --painel: #ffffff;
+    --borda: #dcdce0;
+    --texto: #1c1c1e;
+    --suave: #6b6b70;
+    --destaque: #2f6f9f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    /* Herda da raiz: é o <html> que a barra de fonte reescala. */
+    font-size: 1rem;
+}
+
+html { font-size: 14px; }
+
+.carregando {
+    padding: 3rem;
+    text-align: center;
+    color: var(--suave);
+}
+
+.aplicacao {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header h1 {
+    margin: 0 0 0.6rem;
+    font-size: 1.35rem;
+    font-weight: 650;
+}
+
+nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.aba {
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    background: var(--painel);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--texto);
+}
+
+.aba.ativa {
+    background: var(--destaque);
+    border-color: var(--destaque);
+    color: #fff;
+}
+
+main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 400px;
+    gap: 1rem;
+    align-items: start;
+}
+
+@media (max-width: 1100px) {
+    main { grid-template-columns: 1fr; }
+}
+
+.tela {
+    background: var(--painel);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.5rem;
+    overflow-x: auto;
+}
+
+.tela svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.controles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: calc(100vh - 9rem);
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.bloco {
+    background: var(--painel);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.75rem 0.85rem;
+}
+
+.bloco h3 {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.bloco h4 {
+    margin: 0.5rem 0 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--suave);
+}
+
+.cabecalho-grupo {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.controle {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "rotulo valor" "faixa faixa";
+    gap: 0.15rem 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.78rem;
+}
+
+.controle .rotulo { grid-area: rotulo; color: var(--suave); }
+.controle .valor  { grid-area: valor; font-variant-numeric: tabular-nums; font-weight: 600; }
+.controle input   { grid-area: faixa; width: 100%; }
+
+.linha-botoes {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+button {
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: var(--texto);
+}
+
+button:hover { background: #f0f0f2; }
+button.ativo { background: var(--destaque); border-color: var(--destaque); color: #fff; }
+button.mini { padding: 0.15rem 0.45rem; font-size: 0.7rem; }
+
+.estado-vol {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: #ed7d31;
+    font-weight: 600;
+}
+
+.alternador {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    margin-top: 0.3rem;
+}
+
+.lista-gregas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.lista-camadas {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.grega {
+    display: grid;
+    grid-template-columns: auto 10px 1fr auto auto;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.16rem 0.25rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.grega:hover { background: #f4f4f6; }
+.grega.ligada { background: #eef4f9; }
+
+.grega .amostra {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.grega .nome { font-weight: 550; }
+
+.grega .derivada {
+    color: var(--suave);
+    font-family: ui-monospace, "DejaVu Sans Mono", monospace;
+    font-size: 0.68rem;
+}
+
+.grega .escala {
+    color: #9a9aa0;
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+}
+
+table.leitura {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+}
+
+table.leitura td {
+    padding: 0.18rem 0;
+    border-bottom: 1px solid #f0f0f2;
+}
+
+table.leitura td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.nota {
+    margin: 0.6rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: var(--suave);
+}
+
+footer {
+    margin-top: 1.25rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--borda);
+    font-size: 0.7rem;
+    color: var(--suave);
+    text-align: right;
+}
+
+#blazor-error-ui {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6rem 1rem;
+    background: #ffe0e0;
+    border-top: 1px solid #d99;
+    font-size: 0.8rem;
+    z-index: 1000;
+}
+
+/* ---- Simulador 4 ---- */
+.seletor {
+    width: 100%;
+    padding: 0.35rem 0.4rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+    background: #fff;
+    font-size: 0.78rem;
+    color: var(--texto);
+}
+
+.perna-fixa {
+    font-size: 0.75rem;
+    color: var(--suave);
+    padding: 0.2rem 0;
+}
+
+table.leitura.gregas td:nth-child(2) {
+    text-align: left;
+    font-weight: 400;
+    color: var(--suave);
+    font-family: ui-monospace, "DejaVu Sans Mono", monospace;
+    font-size: 0.68rem;
+}
+
+table.leitura.gregas td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+textarea.feed {
+    width: 100%;
+    font-family: ui-monospace, "DejaVu Sans Mono", monospace;
+    font-size: 0.68rem;
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+    padding: 0.4rem;
+    resize: vertical;
+    margin-bottom: 0.5rem;
+}
+
+.coluna-tela { display: flex; flex-direction: column; gap: 1rem; }
+
+/* O racional agora fica ABAIXO da caixa de estrategia, e nao logo sob o
+   grafico. Como leitura de apoio -- e nao mais o primeiro texto da pagina --
+   ele vem em escala menor: duas colunas de linhas curtas em vez de uma coluna
+   longa, que era o que empurrava a caixa de estrategia para fora da tela. */
+.racional {
+    background: var(--painel);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.5rem 0.65rem;
+}
+
+.racional h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 650;
+    /* O titulo acompanha a rolagem: sem isso, ao rolar o racional o leitor
+       perde de vista de que estrutura ele fala. */
+    position: sticky;
+    top: 0;
+    background: var(--painel);
+    padding-bottom: 0.2rem;
+}
+
+table.tabela-racional { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+
+table.tabela-racional td {
+    padding: 0.3rem 0.2rem;
+    border-bottom: 1px solid #f0f0f2;
+    vertical-align: top;
+}
+
+td.rotulo-racional {
+    width: 200px;
+    color: var(--suave);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.texto-racional { line-height: 1.28; }
+
+p.linha-racional {
+    margin: 0.02rem 0;
+    font-size: 0.63rem;
+    break-inside: avoid;
+}
+p.linha-racional.forte { font-weight: 650; }
+
+/* ---- rodapé central e miniaturas ---- */
+footer.rodape-central { text-align: center; }
+
+.rodape-miniaturas {
+    margin-top: 1rem;
+    background: var(--painel);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+}
+
+.grade-miniaturas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.7rem;
+}
+
+.miniatura {
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 0.35rem;
+    cursor: pointer;
+    background: var(--painel);
+    transition: border-color .12s, box-shadow .12s;
+}
+
+.miniatura:hover { border-color: var(--destaque); box-shadow: 0 1px 6px rgba(0,0,0,.12); }
+.miniatura.ativa { border-color: var(--destaque); border-width: 2px; padding: calc(0.3rem - 1px); }
+.mini-svg svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    background: #fff;
+}
+.mini-nome { font-size: 0.78rem; font-weight: 600; margin-top: 0.3rem; line-height: 1.25; }
+.mini-nome-br { font-size: 0.72rem; color: var(--suave); line-height: 1.25; }
+.tela { cursor: crosshair; }
+/* No Simulador 1 o gráfico inteiro é a alça de arrasto da linha branca. */
+.tela.arrastavel { cursor: ns-resize; }
+
+/* ---- cabeçalho: tema, tamanho de fonte e idioma ------------------------- */
+
+.linha-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.barra-aparencia {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.grupo-aparencia {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 0.2rem 0.35rem;
+    background: var(--painel);
+}
+
+.icone-grupo { font-size: 0.95rem; line-height: 1; opacity: 0.75; }
+
+.barra-aparencia button {
+    border: none;
+    background: transparent;
+    color: var(--texto);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0.15rem 0.35rem;
+    line-height: 1.1;
+    font-family: inherit;
+}
+
+.barra-aparencia button.fonte:nth-of-type(2) { font-size: 0.68rem; }
+.barra-aparencia button.fonte:nth-of-type(3) { font-size: 0.82rem; }
+.barra-aparencia button.fonte:nth-of-type(4) { font-size: 0.95rem; }
+.barra-aparencia button.fonte:nth-of-type(5) { font-size: 1.12rem; }
+.barra-aparencia button.fonte:nth-of-type(6) { font-size: 1.3rem; }
+.barra-aparencia button.tema { font-size: 1.05rem; }
+.barra-aparencia button:hover { background: var(--fundo); }
+.barra-aparencia button.ativo { background: var(--destaque); color: #fff; }
+
+.idiomas {
+    border: none;
+    background: transparent;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.1rem 0.2rem;
+}
+
+/* ---- tema escuro --------------------------------------------------------
+   Só as variáveis mudam: a folha inteira já lê daqui. As poucas cores fixas
+   que restavam (fundo branco de painel, realce de erro) vêm logo abaixo. */
+
+.aplicacao[data-tema="escuro"] {
+    --fundo: #14161a;
+    --painel: #1d2026;
+    --borda: #343841;
+    --texto: #e8e9ec;
+    --suave: #9ba0ab;
+    --destaque: #5aa9dd;
+    background: var(--fundo);
+    color: var(--texto);
+}
+
+.aplicacao[data-tema="escuro"] { min-height: 100vh; }
+body:has(.aplicacao[data-tema="escuro"]) { background: #14161a; color: #e8e9ec; }
+
+.aplicacao[data-tema="escuro"] .aba,
+.aplicacao[data-tema="escuro"] .bloco,
+.aplicacao[data-tema="escuro"] button { background: var(--painel); color: var(--texto); }
+.aplicacao[data-tema="escuro"] .aba.ativa,
+.aplicacao[data-tema="escuro"] button.ativo { background: var(--destaque); color: #0d1013; }
+.aplicacao[data-tema="escuro"] input,
+.aplicacao[data-tema="escuro"] select,
+.aplicacao[data-tema="escuro"] textarea {
+    background: var(--painel);
+    color: var(--texto);
+    border-color: var(--borda);
+}
+/* O SVG do Simulador 4 é desenhado com fundo branco; mantê-lo claro preserva
+   a paleta do opstrat, que é o que a referência publica. */
+.aplicacao[data-tema="escuro"] .tela { background: transparent; }
+
+/* ---- seções adicionais do Simulador 1 ---------------------------------- */
+
+.secao-sim1 {
+    margin-top: 1.6rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--borda);
+}
+
+.secao-sim1 > h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.08rem;
+}
+
+.corpo-secao {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 0.7rem;
+}
+
+.tela-secao { flex: 1 1 520px; cursor: default; }
+
+.controles-secao {
+    flex: 0 1 320px;
+    min-width: 260px;
+    background: var(--painel);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.7rem 0.8rem;
+}
+
+.bloco-extremos {
+    margin-top: 0.7rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--borda);
+}
+
+.aplicacao[data-tema="escuro"] .controles-secao { background: var(--painel); }
+
+/* Botões da animação centrados no bloco. */
+.linha-botoes.centrada {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+.linha-botoes.centrada + .estado-vol { text-align: center; }
+
+/* ---- a caixa da animação, colada ao primeiro gráfico -------------------
+   `nowrap` é o ponto: com wrap, abaixo de 1100 px a caixa descia para o
+   rodapé da página, a 2.600 px do gráfico que ela comanda. Aqui o gráfico
+   encolhe e a caixa permanece ao lado, em qualquer largura. */
+
+.linha-primeiro-grafico {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.linha-primeiro-grafico > .tela {
+    flex: 1 1 auto;
+    min-width: 0;          /* deixa o gráfico encolher em vez de empurrar a caixa */
+}
+
+.caixa-animacao {
+    flex: 0 0 330px;
+    max-width: 330px;
+    align-self: stretch;
+}
+
+@media (max-width: 900px) {
+    .caixa-animacao { flex-basis: 240px; max-width: 240px; }
+}
+
+.campo-ticker {
+    width: 100%;
+    padding: 0.3rem 0.4rem;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    background: var(--painel);
+    color: var(--texto);
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+/* A matriz do rodapé é uma pergunta diferente da dos modelos acima: separa-se
+   com uma borda mais marcada. */
+.secao-correlacao {
+    border-top-width: 2px;
+    margin-top: 2rem;
+}
+
+.aviso-matriz {
+    background: #7f1d1d;
+    color: #fecaca;
+    padding: 0.5rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    margin: 0.5rem 0 0;
+}
+
+/* ------------------------------------------------------------------
+   Matriz de rentabilidade mensal (Simulador 5)
+
+   É TABELA e não SVG porque imprime VALORES, não formas: assim o número
+   pode ser selecionado, copiado e lido por leitor de tela. As cores saem
+   das variáveis do tema; só a intensidade da célula vem do dado, e essa
+   é calculada em F#, onde o retorno existe.
+   ------------------------------------------------------------------ */
+.secao-retorno-mensal {
+    border-top-width: 2px;
+    margin-top: 2rem;
+}
+
+.mm-conjunto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.mm-titulo {
+    margin: 0 0 0.4rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--destaque);
+}
+
+/* A tabela tem 16 colunas e não encolhe: em tela estreita ela ROLA dentro
+   da própria caixa, em vez de espremer a coluna ou empurrar a página para
+   o lado. O corpo da página nunca rola na horizontal. */
+.mm-rolagem {
+    overflow-x: auto;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+}
+
+.matriz-mensal {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.74rem;
+}
+
+/* Tabular-nums acima alinha os dígitos em coluna; sem isso o "1" estreito
+   desalinha a vírgula e a grade perde a leitura vertical. */
+.matriz-mensal th {
+    background: var(--painel);
+    color: var(--suave);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.3rem;
+    border-bottom: 1px solid var(--borda);
+    position: sticky;
+    top: 0;
+}
+
+.matriz-mensal td {
+    padding: 0.3rem 0.35rem;
+    text-align: right;
+    border-bottom: 1px solid var(--borda);
+    white-space: nowrap;
+}
+
+.matriz-mensal .mm-ano {
+    text-align: left;
+    font-weight: 700;
+    color: var(--texto);
+    background: var(--painel);
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+/* O ano fica preso à esquerda ao rolar: sem isso, a partir de setembro o
+   leitor perde de vista de que ano é a linha que está lendo. */
+.matriz-mensal .mm-vazia {
+    color: var(--suave);
+    opacity: 0.45;
+    text-align: center;
+}
+
+.matriz-mensal .mm-resumo {
+    font-weight: 600;
+    color: var(--texto);
+    background: var(--painel);
+}
+
+/* Uma borda mais forte separa os doze meses dos três resumos: são leituras
+   diferentes, e sem a separação AVG parece um décimo terceiro mês. */
+.matriz-mensal .mm-primeiro-resumo {
+    border-left: 2px solid var(--borda);
+}
+
+@media (max-width: 700px) {
+    .matriz-mensal { font-size: 0.68rem; }
+}
+
+/* ------------------------------------------------------------------
+   Simulador 3 — medidor técnico e tabelas de indicadores
+   ------------------------------------------------------------------ */
+.secao-gauge { border-top-width: 2px; margin-top: 2rem; }
+
+/* Os três medidores lado a lado, e quebram juntos quando não cabem —
+   nunca um sozinho na linha de baixo, que sugeriria hierarquia entre
+   eles onde não há: são a mesma leitura em três recortes. */
+.linha-medidores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+}
+.tela-gauge { flex: 0 0 auto; max-width: 290px; }
+
+.duas-tabelas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.2rem;
+}
+
+.bloco-indicadores { min-width: 0; }
+
+.tabela-indicadores {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.76rem;
+    font-variant-numeric: tabular-nums;
+}
+.tabela-indicadores th {
+    background: var(--painel);
+    color: var(--suave);
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.4rem;
+    border-bottom: 1px solid var(--borda);
+}
+.tabela-indicadores td {
+    padding: 0.28rem 0.4rem;
+    border-bottom: 1px solid var(--borda);
+    white-space: nowrap;
+}
+.tabela-indicadores .num { text-align: right; }
+.tabela-indicadores .forte { font-weight: 700; color: var(--texto); }
+
+/* O voto é a coluna que se lê primeiro: cor sólida, não fundo tingido,
+   porque aqui não há intensidade a representar — o voto é categórico. */
+.tabela-indicadores .voto { font-weight: 600; }
+.tabela-indicadores .voto.compra { color: #26a65b; }
+.tabela-indicadores .voto.venda  { color: #cb3a3a; }
+.tabela-indicadores .voto.neutro { color: var(--suave); }
+
+/* Lista dos até cinco ativos. O que está em foco alimenta o medidor —
+   por isso ele é o único destacado. */
+.lista-ativos3 { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.5rem; }
+.ativo3 { display: flex; gap: 0.3rem; align-items: stretch; }
+.ativo3 .nome-ativo3 {
+    flex: 1;
+    text-align: left;
+    background: var(--painel);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+.ativo3.foco .nome-ativo3 { border-color: var(--destaque); color: var(--destaque); font-weight: 600; }
+.ativo3 .tira-ativo3 {
+    background: transparent;
+    color: var(--suave);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 0 0.5rem;
+    cursor: pointer;
+}
+.ativo3 .tira-ativo3:hover { color: #cb3a3a; border-color: #cb3a3a; }
+
+/* ---- Simulador 4: abas da caixa de estrategia ---- */
+/* Duas abas dentro da MESMA caixa. A borda de baixo some na aba ativa, para
+   ela se ligar visualmente ao conteudo -- e a convencao que faz o leitor
+   entender que o que esta abaixo pertence aquela aba. */
+.abas-caixa {
+    display: flex;
+    gap: 0;
+    margin: -0.15rem 0 0.7rem;
+    border-bottom: 1px solid var(--borda);
+}
+
+.aba-caixa {
+    flex: 1;
+    padding: 0.4rem 0.3rem;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    background: transparent;
+    color: var(--suave);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: -1px;
+}
+
+.aba-caixa:hover { color: var(--texto); }
+
+.aba-caixa.ativa {
+    border-color: var(--borda);
+    background: #fff;
+    color: var(--texto);
+}
+
+/* As sete colunas da perna: sentido, tipo, strike, premio, quantidade,
+   desmontagem e o botao de remover. O cabecalho usa a MESMA grade, senao os
+   rotulos deixam de apontar para os campos. */
+.cabecalho-pernas,
+.perna-manual {
+    display: grid;
+    grid-template-columns: 4.2rem 3.6rem repeat(4, minmax(0, 1fr)) 1.1rem;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.cabecalho-pernas {
+    font-size: 0.6rem;
+    color: var(--suave);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.2rem;
+}
+
+.cabecalho-pernas span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.lista-pernas { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.perna-manual .mini-select,
+.perna-manual .campo-num {
+    width: 100%;
+    min-width: 0;
+    padding: 0.2rem 0.15rem;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 0.66rem;
+    color: var(--texto);
+}
+
+.perna-manual .campo-num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, "DejaVu Sans Mono", monospace;
+}
+
+.tira-perna {
+    border: none;
+    background: transparent;
+    color: var(--suave);
+    font-size: 0.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+.tira-perna:hover { color: #cb3a3a; }
+
+.botao-acrescenta {
+    width: 100%;
+    margin: 0.45rem 0 0.6rem;
+    padding: 0.3rem;
+    border: 1px dashed var(--borda);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--suave);
+    font-size: 0.72rem;
+    cursor: pointer;
+}
+
+.botao-acrescenta:hover { color: var(--texto); border-style: solid; }
+
+.linha-campos { display: flex; gap: 0.6rem; }
+.linha-campos .controle { flex: 1; margin-bottom: 0.35rem; }
+
+.campo-valor {
+    padding: 0.25rem 0.3rem;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 0.75rem;
+    color: var(--texto);
+}
+
+/* Separador dos grupos da aba de valores. Nao reaproveita `.cabecalho-grupo`
+   de proposito: aquele e um cabecalho de painel, com outra escala. */
+.titulo-grupo {
+    margin: 0.8rem 0 0.35rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--borda);
+    font-size: 0.7rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--suave);
+}
+
+/* A caixa de estrategia, agora na coluna larga. As sete colunas da perna
+   ganham espaco real, e o seletor do catalogo deixa de precisar de reticencias
+   no meio do nome da estrutura. */
+.coluna-tela > .bloco { margin-bottom: 0; }
+.coluna-tela .abas-caixa { max-width: 26rem; }
+.coluna-tela .cabecalho-pernas,
+.coluna-tela .perna-manual {
+    grid-template-columns: 6rem 5rem repeat(4, minmax(0, 1fr)) 1.4rem;
+    gap: 0.4rem;
+}
+.coluna-tela .perna-manual .mini-select,
+.coluna-tela .perna-manual .campo-num { font-size: 0.78rem; padding: 0.28rem 0.35rem; }
+.coluna-tela .cabecalho-pernas { font-size: 0.66rem; }
+.coluna-tela .botao-acrescenta { max-width: 16rem; }
+/* Os campos calculados em duas colunas: a caixa e larga, e uma unica coluna de
+   pares rotulo/valor deixaria metade da largura vazia. */
+.coluna-tela table.leitura { columns: 2; column-gap: 2rem; }
+.coluna-tela table.leitura tbody { display: block; }
+.coluna-tela table.leitura tr { display: flex; justify-content: space-between; break-inside: avoid; }
+.coluna-tela .linha-campos { max-width: 26rem; }
+
+/* Estrategia a esquerda, racional a direita. A largura do racional e fixa e
+   estreita de proposito: ele e uma coluna de linhas curtas -- "Break-even em
+   31,23", "POP: 34,92%" --, e esticá-lo so afastaria o rotulo do numero. O
+   espaco que sobra vai todo para a tabela de pernas, que e onde se digita. */
+.linha-estrategia {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    gap: 0.75rem;
+    align-items: start;
+    /* Ancora do racional, que e posicionado por cima desta linha. */
+    position: relative;
+    /* O piso vive AQUI, e nao no racional. Posto no racional -- que esta fora
+       do fluxo -- ele estufava a caixa para alem da linha e passava por cima do
+       que vinha abaixo. Na linha, o piso levanta o proprio grid, e o racional o
+       preenche sem invadir nada. */
+    min-height: 15rem;
+}
+
+/* O racional e FIXADO a direita e nao participa do calculo de altura da linha.
+   Enquanto ele era um item normal do grid, era ELE quem esticava a linha --
+   347px contra 184px da caixa ao lado --, e o efeito era o oposto do
+   pretendido: em vez de uma coluna reduzida ao lado da estrategia, uma coluna
+   alta que empurrava tudo abaixo dela para baixo.
+   Tirando-o do fluxo, quem define a altura e a caixa de estrategia, e o
+   racional se ajusta a ela. O `min-height` evita o outro extremo: na aba do
+   catalogo a caixa de estrategia e curta, e sem piso o racional viraria uma
+   fresta rolavel. O que exceder rola DENTRO da caixa, sem esticar a pagina. */
+.linha-estrategia .racional {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 17rem;
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* A caixa de estrategia ocupa a primeira coluna inteira; a segunda existe so
+   para reservar o espaco do racional, que esta posicionado sobre ela. */
+.linha-estrategia > .bloco { grid-column: 1; }
+
+/* Quando nao ha largura para as duas colunas, o racional volta AO FLUXO e
+   desce para baixo da caixa de estrategia.
+   Trocar so o `grid-template-columns` aqui nao bastava -- e nao bastava desde
+   que o racional passou a ser posicionado por fora do fluxo. A caixa de
+   estrategia se esticava para a largura inteira e o racional continuava preso a
+   direita, POR CIMA dela: 294px de sobreposicao, cobrindo justamente a coluna
+   dos valores. Um elemento fora do fluxo tem de ser devolvido ao fluxo
+   explicitamente. */
+@media (max-width: 40rem) {
+    .linha-estrategia {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .linha-estrategia .racional {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow-y: visible;
+    }
+}
+
+/* ---- Simulador 7: a caixa de estrategia em largura inteira ---- */
+/* Vive FORA da grade de `main`, entao herda as margens da pagina e a borda
+   direita cai na mesma vertical do seletor de idiomas do cabecalho. Dentro de
+   `main` isso e impossivel: a coluna do grafico termina onde comeca a calha
+   para o painel de controles. */
+.faixa-estrategia {
+    margin-top: 0.75rem;
+}
+
+/* Com a largura inteira disponivel, a tabela de pernas deixa de ser o gargalo:
+   as quatro colunas numericas ganham espaco e os rotulos do cabecalho param de
+   sair com reticencias. */
+.faixa-estrategia .cabecalho-pernas,
+.faixa-estrategia .perna-manual {
+    grid-template-columns: 7rem 6rem repeat(4, minmax(0, 1fr)) 1.6rem;
+    gap: 0.5rem;
+}
+
+.faixa-estrategia .perna-manual .mini-select,
+.faixa-estrategia .perna-manual .campo-num { font-size: 0.82rem; padding: 0.32rem 0.4rem; }
+.faixa-estrategia .cabecalho-pernas { font-size: 0.7rem; }
+.faixa-estrategia .abas-caixa { max-width: 30rem; }
+.faixa-estrategia .botao-acrescenta { max-width: 20rem; }
+.faixa-estrategia .linha-campos { max-width: 30rem; }
+
+/* Os campos calculados em tres colunas: em largura inteira, duas deixariam
+   metade da faixa vazia. */
+.faixa-estrategia table.leitura { columns: 3; column-gap: 2.5rem; }
+.faixa-estrategia table.leitura tbody { display: block; }
+.faixa-estrategia table.leitura tr {
+    display: flex;
+    justify-content: space-between;
+    break-inside: avoid;
+}
+
+@media (max-width: 60rem) {
+    .faixa-estrategia table.leitura { columns: 1; }
+    .faixa-estrategia .cabecalho-pernas,
+    .faixa-estrategia .perna-manual {
+        grid-template-columns: 4.2rem 3.6rem repeat(4, minmax(0, 1fr)) 1.1rem;
+        gap: 0.25rem;
+    }
+}
+
+/* No Simulador 7 nao ha racional ao lado, entao a caixa de estrategia ocupa a
+   linha inteira da coluna do grafico -- mesmo formato do Simulador 4, so sem o
+   vizinho reservando espaco a direita. */
+.linha-estrategia.so-estrategia {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+}
+
+/* ---- botões de template do gráfico de payoff ---- */
+/* Ficam SOBRE a caixa do gráfico, ancorados no canto superior direito. Fora do
+   fluxo de propósito: empilhados acima da caixa, empurrariam o desenho para
+   baixo e mudariam o enquadramento a cada carga. */
+.coluna-tela { position: relative; }
+
+.botoes-template {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.7rem;
+    z-index: 5;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.botao-template {
+    padding: 0.22rem 0.6rem;
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--suave);
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.botao-template:hover { color: var(--texto); }
+
+.botao-template.ativo {
+    background: #1a3fa0;
+    border-color: #1a3fa0;
+    color: #fff;
+}
